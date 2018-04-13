@@ -1,5 +1,5 @@
-const htmlReady = require('./busy/steemitHtmlReady')
+import { getHtml } from './busy/Body';
 
-exports.steemMarkdown = function(options) {
-  
+exports.steemMarkdown = function(markdown, options) {
+  return getHtml(markdown, options)
 }
