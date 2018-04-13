@@ -214,6 +214,19 @@ function linkifyNode(child, state) {
 }
 
 function linkify(content, mutate, hashtags, usertags, images, links) {
+  content = content.replace(linksRe.any, ln => {
+    if (linksRe.image.test(ln)) {
+      if (images) images.add(ln);
+      return `<img src="${ln}" />`;
+    }
+
+    // do not linkify .exe or .zip urls
+    if (/\.(zip|exe)$/i.test(ln)) return ln;
+
+    if (links) links.add(ln);
+    return `<a href="${ln}">${ln}</a>`;
+  });
+
   // hashtag
   content = content.replace(/(^|\s)(#[-a-z\d]+)/gi, tag => {
     if (/#[\d]+$/.test(tag)) return tag; // Don't allow numbers to be tags
@@ -234,19 +247,6 @@ function linkify(content, mutate, hashtags, usertags, images, links) {
     if (valid && usertags) usertags.add(userLower);
     if (!mutate) return user;
     return space + (valid ? `<a href="/@${userLower}">@${user2}</a>` : `@${user2}`);
-  });
-
-  content = content.replace(linksRe.any, ln => {
-    if (linksRe.image.test(ln)) {
-      if (images) images.add(ln);
-      return `<img src="${ln}" />`;
-    }
-
-    // do not linkify .exe or .zip urls
-    if (/\.(zip|exe)$/i.test(ln)) return ln;
-
-    if (links) links.add(ln);
-    return `<a href="${ln}">${ln}</a>`;
   });
   return content;
 }
