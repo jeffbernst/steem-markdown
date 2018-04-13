@@ -9,7 +9,7 @@ import slice from 'lodash/slice';
 import xmldom from 'xmldom';
 import linksRe from './steemitLinks';
 import { validateAccountName } from './ChainValidation';
-import { getProxyImageURL } from '../helpers/image';
+import { getProxyImageURL } from './image';
 
 const noop = () => {};
 const DOMParser = new xmldom.DOMParser({

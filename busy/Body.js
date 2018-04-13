@@ -6,10 +6,10 @@ import classNames from 'classnames';
 import sanitizeHtml from 'sanitize-html';
 import Remarkable from 'remarkable';
 import embedjs from 'embedjs';
-import { jsonParse } from '../../helpers/formatter';
-import sanitizeConfig from '../../vendor/SanitizeConfig';
-import { imageRegex, dtubeImageRegex } from '../../helpers/regexHelpers';
-import htmlReady from '../../vendor/steemitHtmlReady';
+import { jsonParse } from './formatter';
+import sanitizeConfig from './SanitizeConfig';
+import { imageRegex, dtubeImageRegex } from './regexHelpers';
+import htmlReady from './steemitHtmlReady';
 import PostFeedEmbed from './PostFeedEmbed';
 import './Body.less';
 
