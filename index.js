@@ -1,5 +1,7 @@
 import { getHtml } from './busy/Body';
 
-exports.steemMarkdown = function(markdown, options) {
+function steemMarkdown(markdown, options) {
   return getHtml(markdown, options)
 }
+
+module.exports = steemMarkdown
